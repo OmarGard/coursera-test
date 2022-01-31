@@ -1,0 +1,10 @@
+<div ng-repeat="item in ctrl.found">
+    <h3>
+        {{item.name | uppercase}}
+        <button ng-click="ctrl.onRemove({index: $index});" class="btn btn-danger">Don't want this one!</button>
+    </h3>
+    <p>
+        <span class="font-weight-bold">{{item.short_name}}. </span>
+        <span>{{item.description}}</span>
+    </p>
+</div>
