@@ -26,31 +26,23 @@
   function NarrowItDownController(MenuSearchService, $filter) {
     var ctrl = this;
     ctrl.found = [];
-    ctrl.nothingIsFound = false;
     ctrl.textToSearch = "";
+    ctrl.searched = false;
     ctrl.search = function () {
       var filteredTerm = $filter('lowercase')(ctrl.textToSearch);
       MenuSearchService.getMatchedMenuItems(filteredTerm).then(function (result) {
         ctrl.found = result;
-        if (result.length == 0)
-          ctrl.nothingIsFound = true;
-        else
-          ctrl.nothingIsFound = false;
+        ctrl.searched = true;
       });
-
     };
 
     ctrl.onRemove = function (indexToRemove) {
       if (ctrl.found.length > 0) {
         ctrl.found.splice(indexToRemove, 1);
-        if (ctrl.found.length <= 0)
-          ctrl.nothingIsFound = true;
-        else
-          ctrl.nothingIsFound = false;
       }
-      else {
-        ctrl.nothingIsFound = true
-      }
+    }
+    ctrl.nothingFound = function () {
+      return ctrl.found.length == 0 && ctrl.searched;
     }
 
   }
