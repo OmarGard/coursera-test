@@ -1,0 +1,45 @@
+<div class="container">
+    <h1>Sign Up Form</h1>
+    <form name='regForm' novalidate>
+        <label for="firstName">First Name: </label>
+        <input id="firstName" type="text" class="form-control" name="firstName" placeholder="John"
+          ng-model="signUpCtrl.firstName"
+          required
+          />
+        <label for="lastName">Last Name: </label>
+        <input id="lastName" type="text" class="form-control" name="lastName" placeholder="Doe"
+          ng-model="signUpCtrl.lastName"
+          required
+          />
+        <label for="email">Email: </label>
+        <input id="email" type="email" class="form-control" name="email" placeholder="example@mail.com"
+        ng-model="signUpCtrl.email"
+        required>
+        <span ng-if="regForm.email.$invalid && regForm.email.$touched">
+        Must be a valid email address: handle@domain format
+        </span>
+
+        <label for="phone">Phone: </label>
+        <input id="phone" type="text" class="form-control" name="phone" placeholder="Phone ###-###-####"
+        ng-model="signUpCtrl.phone"
+        pattern="(\d{3})-(\d{3})-(\d{4})"
+        required>
+        <span ng-if="regForm.phone.$invalid && regForm.phone.$touched">
+        Phone must be in the format ###-###-####.
+        </span>
+
+        <label for="menuNumber">Favorite Menu Number: </label>
+        <input id="menuNumber" type="text" class="form-control" name="menuNumber" placeholder="A1"
+        ng-model="signUpCtrl.menuNumber"
+        required>
+        <h4 style="color:#f6b319;" ng-show="signUpCtrl.error">No such menu number exists</h4>
+        <button 
+        style="margin-top:20px;"
+            class="btn btn-primary btn-lg btn-block"
+          ng-disabled="regForm.$invalid"
+          ng-click="signUpCtrl.submit()">Submit</button>
+
+        <h3 style="color:#f6b319;" ng-show="signUpCtrl.infoUpdated">Your information has been saved</h3>
+
+    </form>
+</div>
